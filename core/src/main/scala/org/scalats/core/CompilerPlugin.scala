@@ -6,9 +6,9 @@ import scala.util.matching.Regex
 import scala.tools.nsc.plugins.{Plugin, PluginComponent}
 import scala.tools.nsc.{Global, Phase}
 
-class CompilerPlugin(val global: Global) extends Plugin { plugin =>
+final class CompilerPlugin(val global: Global) extends Plugin { plugin =>
   val name = "scalats"
-  val description = "Scala compiler plugin for ScalaTS"
+  val description = "Scala compiler plugin for TypeScript (scalats)"
   val components: List[PluginComponent] = List(Component)
 
   /*
@@ -32,8 +32,7 @@ class CompilerPlugin(val global: Global) extends Plugin { plugin =>
   private object Component extends PluginComponent {
     val global: plugin.global.type = plugin.global
     val runsAfter = List("typer")
-    override val runsBefore = List("patmat")
-    val phaseName = "scalats"
+    val phaseName = plugin.name
 
     import global._
 
@@ -42,6 +41,7 @@ class CompilerPlugin(val global: Global) extends Plugin { plugin =>
     }
 
     def foo(unit: CompilationUnit): Unit = {
+      // 1 unit per scala file
       println(s"unit = $unit // ${unit.defined}")
       // rootMirror
     }

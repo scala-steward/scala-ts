@@ -1,0 +1,4 @@
+<plugin>
+  <name>scalats</name>
+  <classname>org.scalats.core.CompilerPlugin</classname>
+</plugin>
