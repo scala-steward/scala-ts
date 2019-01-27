@@ -1,6 +1,3 @@
-### THIS PROJECT IS NOT MAINTAINED ANY MORE
-UNFORTUNATELY I DON'T HAVE TIME ANY MORE TO MAINTAIN THIS PROJECT. PLEASE REACH OUT TO ME IF YOU'RE INTERESTED IN TAKING IT OVER.
-
 # scala-ts
 
 ## Overview
@@ -21,22 +18,22 @@ http://codewithstyle.info/scala-ts-scala-typescript-code-generator/
 
 ### Standalone
 
-Run `com.mpc.scalats.Main` class and provide a space separated list of fully qualified class names which you want to generate TypeScript for. 
+Run `org.scalats.Main` class and provide a space separated list of fully qualified class names which you want to generate TypeScript for. 
 
 Example:
 ```
-java -cp 'scala-ts-assembly-0.1.0.jar' com.mpc.scalats.Main "com.example.ExampleDto"
+java -cp 'scala-ts-assembly-0.1.0.jar' org.scalats.Main "com.example.ExampleDto"
 ```
 
 ### SBT plugin
 
 Add the following plugin to `plugins.sbt`:
 
-    addSbtPlugin("com.github.miloszpp" % "scala-ts" % "0.3.0")
+    addSbtPlugin("org.scala-ts" % "scala-ts" % "0.3.0")
 
 Additionally, enable the plugin in your project settings:
 
-    enablePlugins(com.mpc.scalats.sbt.TypeScriptGeneratorPlugin)
+    enablePlugins(org.scalats.sbt.TypeScriptGeneratorPlugin)
 
 Now you can use the `generateTypeScript` command in SBT. For example:
 
@@ -60,7 +57,7 @@ Usage example in `build.sbt`:
 ```
 emitClasses in generateTypeScript := true
 
-enablePlugins(com.mpc.scalats.sbt.TypeScriptGeneratorPlugin)
+enablePlugins(org.scalats.sbt.TypeScriptGeneratorPlugin)
 ```
 
 ## Type support
@@ -76,12 +73,13 @@ Currently *scala-ts* supports the following types of case class members:
 * (case) object, as singleton class
 * sealed trait, as union type
 
-## Development
+## Build
 
-### Quickstart
+This project uses SBT:
 
-    sbt
-    runMain com.mpc.scalats.AuthorExample
+    sbt +publishLocal
+
+[Travis](https://travis-ci.org/scala-ts/scala-ts): ![Travis build status](https://travis-ci.org/scala-ts/scala-ts.png?branch=master)
 
 ## Credits
 
